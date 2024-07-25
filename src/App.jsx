@@ -12,8 +12,9 @@ class LifecycleDemo extends Component {
     console.log('Component is being constructed');
   }
 
-  static getDerivedStateFromProps() {
+  static getDerivedStateFromProps(nextProps, prevState) {
     console.log('Component is receiving new props');
+    // Return state updates or null
     return null;
   }
 
@@ -22,15 +23,18 @@ class LifecycleDemo extends Component {
     this.num
       ? console.log('%c>>>>>>>>>>mounting<<<<<<<<<<<<', 'color : green')
       : (this.num += 1);
+    // Perform any setup that requires DOM nodes
   }
 
-  shouldComponentUpdate() {
+  shouldComponentUpdate(nextProps, nextState) {
     console.log('Should component update?');
+    // Return true or false based on whether the component should update
     return true;
   }
 
-  getSnapshotBeforeUpdate() {
+  getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log('Before the DOM is updated');
+    // Return a value that will be passed to componentDidUpdate
     return null;
   }
 
@@ -44,6 +48,7 @@ class LifecycleDemo extends Component {
 
   componentWillUnmount() {
     console.log('Component is about to be unmounted');
+    // Perform any cleanup
   }
 
   handleClick = () => {
